@@ -3,6 +3,7 @@ package com.challenge.api.controller;
 import com.challenge.api.model.Employee;
 import java.util.List;
 import java.util.UUID;
+import main.java.com.challenge.api.services.EmployeeServices;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,16 +17,13 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/api/v1/employee")
 public class EmployeeController {
-
+    EmployeeServices service = new EmployeeServices();
     /**
      * @implNote Need not be concerned with an actual persistence layer. Generate mock Employee models as necessary.
      * @return One or more Employees.
      */
     @GetMapping("/")
     public List<Employee> getAllEmployees() {
-        // this should return all employees, unfiltered
-        main.java.com.challenge.api.services.EmployeeServices service =
-                new main.java.com.challenge.api.services.EmployeeServices();
         return service.getAllEmployees();
     }
 
@@ -36,7 +34,14 @@ public class EmployeeController {
      */
     @GetMapping("/{uuid}")
     public Employee getEmployeeByUuid(UUID uuid) {
-        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED);
+        if (uuid == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        Employee result = service.getEmployeeByUuid(uuid);
+        if (result == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        return result;
     }
 
     /**
@@ -45,7 +50,7 @@ public class EmployeeController {
      * @return Newly created Employee
      */
     @PostMapping
-    public Employee createEmployee(Object requestBody) {
+    public Employee createEmployee(@RequestBody Object requestBody) {
         throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED);
     }
 }
