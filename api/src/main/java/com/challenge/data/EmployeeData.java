@@ -89,10 +89,7 @@ public class EmployeesRUsEmployee implements Employee{
 }
 
 public class EmployeeData {
-    public static final EmployeesRUsEmployee emp1 = new EmployeesRUsEmployee(
-
-    );
-    private static List<Employee> EMPLOYEES;
+    public static List<Employee> EMPLOYEES;
     private void CreateEmployees(){
         EmployeeInformation emp1info = new EmployeeInformation.Builder()
             .Age(21)
@@ -106,26 +103,26 @@ public class EmployeeData {
             .Salary(9999999)
             .Uuid(new UUID());
         EmployeeInformation emp2info = new EmployeeInformation.Builder()
-            .Age(21)
-            .ContractHireDate(Instant(1759430448))
+            .Age(31)
+            .ContractHireDate(Instant(1759130448))
             .ContractTerminationDate(null)
-            .Email("rob@mail.com")
-            .FirstName("Robert")
-            .FullName("Robert John Romero")
-            .JobTitle("Associate Software Engineer")
-            .LastName("Romero")
-            .Salary(9999999)
+            .Email("Bryan@mail.com")
+            .FirstName("Bryan")
+            .FullName("Bryan Smith")
+            .JobTitle("Lead Software Engineer")
+            .LastName("Smith")
+            .Salary(99999999)
             .Uuid(new UUID());
         EmployeeInformation emp3info = new EmployeeInformation.Builder()
-            .Age(21)
-            .ContractHireDate(Instant(1759430448))
+            .Age(37)
+            .ContractHireDate(Instant(1758433448))
             .ContractTerminationDate(null)
-            .Email("rob@mail.com")
-            .FirstName("Robert")
-            .FullName("Robert John Romero")
-            .JobTitle("Associate Software Engineer")
-            .LastName("Romero")
-            .Salary(9999999)
+            .Email("TheDon@mail.com")
+            .FirstName("Donald")
+            .FullName("Donald Forrest")
+            .JobTitle("Sales Representative")
+            .LastName("Forrest")
+            .Salary(270000)
             .Uuid(new UUID());
         EmployeesRUsEmployee emp1 = new EmployeesRUsEmployee();
         EMPLOYEES.add();
