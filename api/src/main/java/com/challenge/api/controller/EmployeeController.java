@@ -1,11 +1,10 @@
 package com.challenge.api.controller;
 
 import com.challenge.api.model.Employee;
-import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 import main.java.com.challenge.api.services.EmployeeServices;
-import main.java.com.challenge.data.EmployeeInfo;
+import main.java.com.challenge.data.MyEmployee;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +41,6 @@ public class EmployeeController {
             System.out.println("uuid is null");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        System.out.println(uuid);
         Employee result = service.getEmployeeByUuid(uuid);
         if (result == null) {
             System.out.println("result is null");
@@ -56,20 +54,12 @@ public class EmployeeController {
      * @param requestBody hint!
      * @return Newly created Employee
      */
-    @PostMapping
-    public Employee createEmployee(@RequestBody Object requestBody) {
-        EmployeeInfo empinfo = new EmployeeInfo.Builder()
-                .Age(37)
-                        .ContractHireDate(Instant.ofEpochSecond(1758433448))
-                        .ContractTerminationDate(null)
-                        .Email("TheDon@mail.com")
-                        .FirstName("Donald")
-                        .FullName("Donald Forrest")
-                        .JobTitle("Sales Representative")
-                        .LastName("Forrest")
-                        .Salary(270000)
-                        .Uuid(UUID.randomUUID())
-                        .build();
-        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED);
+    @PostMapping("/createEmployee")
+    public Employee createEmployee(@RequestBody MyEmployee requestBody) {
+        Employee emp = service.createEmployee(requestBody);
+        if (emp.getUuid() != null) {
+            return emp;
+        }
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 }
