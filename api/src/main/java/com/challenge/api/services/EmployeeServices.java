@@ -4,7 +4,6 @@ import com.challenge.api.model.Employee;
 import java.util.List;
 import java.util.UUID;
 import main.java.com.challenge.data.EmployeeData;
-import main.java.com.challenge.data.EmployeeInfo;
 
 public class EmployeeServices {
     EmployeeData data = new EmployeeData();
@@ -23,7 +22,9 @@ public class EmployeeServices {
         return null;
     }
 
-    public Employee createEmployee(EmployeeInfo info) {
-        return data.CreateEmployee(info);
+    public Employee createEmployee(Employee info) {
+        // adding logic in data layer because this would be an sql statement
+        Employee emp = data.CreateEmployee(info);
+        return emp;
     }
 }
